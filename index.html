@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buzzworld</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div id="app" class="container">
+        <!-- Login Section -->
+        <div id="login-section" class="card section">
+            <div class="card-content">
+                <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Login Background" class="section-img">
+                <h2><i class="fas fa-sign-in-alt"></i> Login to Buzzworld</h2>
+                <input type="text" id="username" placeholder="Username" class="input-field">
+                <input type="password" id="password" placeholder="Password" class="input-field">
+                <button onclick="login()" class="btn"><i class="fas fa-arrow-right"></i> Login</button>
+                <p>Not registered? <a href="#" onclick="showRegister()" class="link">Register here</a></p>
+            </div>
+        </div>
+
+        <!-- Register Section -->
+        <div id="register-section" class="card section" style="display: none;">
+            <div class="card-content">
+                <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Register Background" class="section-img">
+                <h2><i class="fas fa-user-plus"></i> Join Buzzworld</h2>
+                <input type="text" id="reg-username" placeholder="Username" class="input-field">
+                <input type="password" id="reg-password" placeholder="Password" class="input-field">
+                <button onclick="register()" class="btn"><i class="fas fa-arrow-right"></i> Register</button>
+                <p>Already registered? <a href="#" onclick="showLogin()" class="link">Login here</a></p>
+            </div>
+        </div>
+
+        <!-- Main App Section -->
+        <div id="main-section" class="main-container" style="display: none;">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <h1>Buzzworld</h1>
+                <nav>
+                    <button onclick="showSection('post-section')" class="nav-btn"><i class="fas fa-pen"></i> Posts</button>
+                    <button onclick="showSection('friends-section')" class="nav-btn"><i class="fas fa-users"></i> Friends</button>
+                    <button onclick="showSection('my-profile-section')" class="nav-btn"><i class="fas fa-id-card"></i> My Profile</button>
+                    <button onclick="showSection('profile-section')" class="nav-btn"><i class="fas fa-user"></i> View Profile</button>
+                    <button onclick="toggleTheme()" class="nav-btn"><i class="fas fa-moon"></i> Toggle Theme</button>
+                    <button onclick="logout()" class="nav-btn logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                </nav>
+                <p>Welcome, <span id="current-user"></span>!</p>
+            </aside>
+
+            <!-- Content Area -->
+            <div class="content">
+                <!-- Post Section -->
+                <div id="post-section" class="card active-section">
+                    <h3><i class="fas fa-pen"></i> Create a Post</h3>
+                    <textarea id="post-content" placeholder="What's on your mind?" class="input-field textarea"></textarea>
+                    <input type="file" id="post-image" accept="image/*" class="input-field">
+                    <button onclick="createPost()" class="btn"><i class="fas fa-paper-plane"></i> Post</button>
+                    <h3>Your Feed</h3>
+                    <div id="posts" class="posts-container"></div>
+                </div>
+
+                <!-- Friends Section -->
+                <div id="friends-section" class="card" style="display: none;">
+                    <h3><i class="fas fa-users"></i> Your Friends</h3>
+                    <input type="text" id="friend-username" placeholder="Enter username to send request" class="input-field">
+                    <button onclick="sendFriendRequestFromInput()" class="btn"><i class="fas fa-user-plus"></i> Send Request</button>
+                    <ul id="friends-list" class="friends-list"></ul>
+                </div>
+
+                <!-- My Profile Section -->
+                <div id="my-profile-section" class="card" style="display: none;">
+                    <h3><i class="fas fa-id-card"></i> My Profile</h3>
+                    <div class="profile-display">
+                        <img id="my-dp" src="" alt="Profile Picture" class="dp">
+                        <div>
+                            <h4 id="my-username"></h4>
+                            <p id="my-bio"></p>
+                        </div>
+                    </div>
+                    <input type="file" id="dp-upload" accept="image/*" class="input-field">
+                    <textarea id="bio" placeholder="Write your bio..." class="input-field textarea"></textarea>
+                    <button onclick="updateProfile()" class="btn"><i class="fas fa-save"></i> Save Profile</button>
+                    <h4>Pending Friend Requests</h4>
+                    <ul id="pending-requests" class="friends-list"></ul>
+                    <h4>Account Settings</h4>
+                    <button onclick="deactivateAccount()" class="btn deactivate-btn"><i class="fas fa-trash-alt"></i> Deactivate Account</button>
+                </div>
+
+                <!-- View Profile Section -->
+                <div id="profile-section" class="card" style="display: none;">
+                    <h3><i class="fas fa-user"></i> View Profile</h3>
+                    <input type="text" id="profile-username" placeholder="Enter username" class="input-field">
+                    <button onclick="viewProfile()" class="btn"><i class="fas fa-eye"></i> View Profile</button>
+                    <div id="profile-view" class="profile-container"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
